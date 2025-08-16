@@ -9,33 +9,40 @@ const imageClimate = document.getElementById('imageClimate');
 
 function buscarClima(cidade) {
     if (!cidade) return;
-
     const cidadeEncoded = encodeURIComponent(cidade);
     const url = `https://api.openweathermap.org/data/2.5/weather?q=${cidadeEncoded},BR&appid=${apiKey}&units=metric&lang=pt_br`;
-
     fetch(url)
         .then((response) => {
             if (!response.ok) throw new Error('Cidade não encontrada!');
             return response.json();
         })
+        .then((data) => atualizarDOM(data))
+        .catch((error) => tratarErro(error));
+}
+
+function buscarClimaPorCoords(lat, lon) {
+    const url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric&lang=pt_br`;
+    fetch(url)
+        .then((response) => {
+            if (!response.ok) throw new Error('Não foi possível obter o clima da sua localização.');
+            return response.json();
+        })
         .then((data) => {
             atualizarDOM(data);
+            searchInput.value = data.name;
         })
-        .catch((error) => {
-            tratarErro(error);
-        });
+        .catch((error) => tratarErro(error));
 }
 
 function atualizarDOM(dados) {
     climateText.textContent = dados.weather[0].description;
     thermometerText.textContent = `${dados.main.temp} °C`;
     windSpeed.textContent = `${dados.wind.speed} km/h`;
-
     const iconCode = dados.weather[0].icon;
     climateIcon.src = `https://openweathermap.org/img/wn/${iconCode}.png`;
     climateIcon.alt = dados.weather[0].description;
-
     mudarImagem(dados.weather[0].main.toLowerCase());
+    mudarBackgroundNoite(iconCode);
 }
 
 function mudarImagem(climaPrincipal) {
@@ -57,6 +64,16 @@ function mudarImagem(climaPrincipal) {
     }
 }
 
+function mudarBackgroundNoite(iconCode) {
+    if (iconCode.endsWith('n')) {
+        document.body.style.background = '#1a1a2e';
+        document.body.style.color = '#fff';
+    } else {
+        document.body.style.background = '#87cefa';
+        document.body.style.color = '#333';
+    }
+}
+
 function tratarErro(erro) {
     climateText.textContent = erro.message;
     thermometerText.textContent = '';
@@ -64,6 +81,8 @@ function tratarErro(erro) {
     climateIcon.src = 'icons/sunny.svg';
     imageClimate.src = 'img/ensolarado.png';
     imageClimate.alt = 'Clima';
+    document.body.style.background = '#87cefa';
+    document.body.style.color = '#333';
 }
 
 searchContainer.addEventListener('click', (e) => {
@@ -76,30 +95,11 @@ searchInput.addEventListener('keypress', (e) => {
 
 function pegarLocalizacao() {
     if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(
-            (posicao) => {
-                const lat = posicao.coords.latitude;
-                const lon = posicao.coords.longitude;
-                buscarClimaPorCoords(lat, lon);
-            },
-            (erro) => {
-                console.log('Não foi possível pegar localização. O usuário pode digitar a cidade.');
-            }
-        );
-    }
-}
-
-async function buscarClimaPorCoords(lat, lon) {
-    const url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric&lang=pt_br`;
-
-    try {
-        const response = await fetch(url);
-        if (!response.ok) throw new Error('Não foi possível obter o clima da sua localização.');
-        const data = await response.json();
-        atualizarDOM(data);
-        searchInput.value = data.name;
-    } catch (error) {
-        tratarErro(error);
+        navigator.geolocation.getCurrentPosition((posicao) => {
+            const lat = posicao.coords.latitude;
+            const lon = posicao.coords.longitude;
+            buscarClimaPorCoords(lat, lon);
+        });
     }
 }
 
