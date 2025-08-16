@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Clima App</title>
+        <link rel="stylesheet" href="style.css" />
+    </head>
+    <body>
+        <div class="main-container">
+            <div class="imgBg">
+                <img src="img/ensolarado.png" alt="climate" id="imageClimate" />
+            </div>
+
+            <div class="search" id="search">
+                <input type="text" placeholder="Cidade..." id="searchInp" />
+                <img src="icons/search.svg" alt="search" class="searchIcons" />
+            </div>
+
+            <div class="main-informations">
+                <div class="climate">
+                    <img src="icons/sunny.svg" alt="sunny" id="climateIcon" />
+                    <p id="climateText">clima</p>
+                </div>
+
+                <div class="thermometer">
+                    <img src="icons/thermometer.svg" alt="thermometer" id="thermometer" />
+                    <p id="thermometerText">Temperatura em °C</p>
+                </div>
+
+                <div class="wind">
+                    <img src="icons/wind.svg" alt="wind" id="wind" />
+                    <p id="windSpeed">Velocidade do vento</p>
+                </div>
+            </div>
+        </div>
+
+        <script src="script.js"></script>
+    </body>
+</html>
