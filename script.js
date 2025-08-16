@@ -1,5 +1,4 @@
 const apiKey = 'c21f04dfe7a5de47d16c655b66b36ed3';
-
 const searchInput = document.getElementById('searchInp');
 const searchContainer = document.getElementById('search');
 const climateText = document.getElementById('climateText');
