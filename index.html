@@ -6,31 +6,37 @@
         <title>Clima App</title>
         <link rel="stylesheet" href="style.css" />
     </head>
+
     <body>
         <div class="main-container">
             <div class="imgBg">
                 <img src="img/ensolarado.png" alt="climate" id="imageClimate" />
             </div>
 
+            <!-- SEARCH -->
             <div class="search" id="search">
                 <input type="text" placeholder="Cidade..." id="searchInp" />
                 <img src="icons/search.svg" alt="search" class="searchIcons" />
             </div>
 
+            <!-- WEATHER INFORMATION -->
             <div class="main-informations">
+                <!-- CLIMATE DESCRIPTION -->
                 <div class="climate">
                     <img src="icons/sunny.svg" alt="sunny" id="climateIcon" />
-                    <p id="climateText">clima</p>
+                    <p id="climateText">--</p>
                 </div>
 
+                <!-- TEMPERATURE -->
                 <div class="thermometer">
-                    <img src="icons/thermometer.svg" alt="thermometer" id="thermometer" />
-                    <p id="thermometerText">Temperatura em °C</p>
+                    <img src="icons/thermometer.svg" alt="thermometer" />
+                    <p id="thermometerText">-- °C</p>
                 </div>
 
+                <!-- WIND -->
                 <div class="wind">
-                    <img src="icons/wind.svg" alt="wind" id="wind" />
-                    <p id="windSpeed">Velocidade do vento</p>
+                    <img src="icons/wind.svg" alt="wind" />
+                    <p id="windSpeed">-- km/h</p>
                 </div>
             </div>
         </div>
