@@ -62,6 +62,14 @@ cd Previsao-do-tempo
 - Campo de busca para cidades (funcionalidade básica de input)
 - Interface interativa com HTML/CSS/JS
 
+### Futuras melhorias
+
+- Exibição de detalhes: vento, pressão, umidade, previsão de 3-7 dias
+- Histórico de cidades consultadas
+- Animações para transições e resultados
+
+## Autor
+
 **Rafael Domiciano Maia Mateus** — Desenvolvedor Web e estudante apaixonado por Python, Django e interfaces modernas.
 
 LinkedIn: [https://www.linkedin.com/in/rafael-maia-26b41a308](https://www.linkedin.com/in/rafael-maia-26b41a308)
