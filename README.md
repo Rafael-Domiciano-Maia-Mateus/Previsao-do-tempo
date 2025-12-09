@@ -27,10 +27,10 @@ O projeto foi desenvolvido como uma página web **frontend-only**, sem backend, 
 ## 📂 Estrutura do Projeto
 
 Previsao-do-tempo/
-├── index.html ← página principal
-├── style.css ← estilos do site
-├── script.js ← lógica em JavaScript
-├── img/ ← ícones ou imagens usadas
+  ├── index.html ← página principal
+  ├── style.css ← estilos do site
+  ├── script.js ← lógica em JavaScript
+  ├── img/ ← ícones ou imagens usadas
 
 
 ---
